@@ -368,6 +368,85 @@ input{font-family:inherit;font-size:16px}
 .retomar-txt span{font-size:12px;color:var(--texto-3)}
 .retomar .barrita{margin-top:7px}
 
+/* ---------- Leer / Escuchar ---------- */
+.modos{display:flex;gap:4px;background:var(--superficie);padding:3px;border-radius:99px;
+  margin:12px 16px 0;max-width:1180px;margin-inline:auto}
+.modo{flex:1;padding:9px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--texto-2);
+  display:flex;align-items:center;justify-content:center;gap:7px;transition:.18s}
+.modo.on{background:var(--superficie-alta);color:var(--texto)}
+.modo svg{opacity:.85}
+
+.tapa .auricular{
+  position:absolute;left:14px;bottom:11px;z-index:2;width:24px;height:24px;border-radius:50%;
+  background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.24);
+  display:grid;place-items:center;color:#fff;
+}
+
+/* ---------- Reproductor ---------- */
+.mini{
+  position:fixed;left:10px;right:10px;bottom:calc(10px + var(--safe-b));z-index:70;
+  background:var(--superficie-alta);border:1px solid var(--linea-suave);
+  border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.55);
+  display:none;align-items:center;gap:12px;padding:10px 12px;
+  animation:subir .24s cubic-bezier(.2,.8,.3,1);
+}
+.mini.ver{display:flex}
+.mini-tapa{width:40px;height:40px;border-radius:8px;flex:none;display:grid;place-items:center;color:#fff}
+.mini-txt{flex:1;min-width:0}
+.mini-txt b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini-txt span{display:block;font-size:11.5px;color:var(--texto-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini-btn{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--oro);color:#1A1408}
+.mini-linea{position:absolute;left:12px;right:12px;bottom:5px;height:2px;
+  background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.mini-linea i{display:block;height:100%;background:var(--oro);width:0}
+
+.repro{
+  position:fixed;inset:0;z-index:90;background:var(--fondo);
+  display:none;flex-direction:column;
+  padding:calc(var(--safe-t) + 8px) 20px calc(20px + var(--safe-b));
+}
+.repro.ver{display:flex}
+.repro-tope{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex:none}
+.repro-tope b{flex:1;text-align:center;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--texto-3);font-weight:700}
+.repro-cuerpo{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+.repro-arte{width:min(58vw,230px);aspect-ratio:2/3;margin:14px auto 20px;flex:none}
+.repro-info{text-align:center;margin-bottom:20px;flex:none}
+.repro-info h3{font-family:var(--display);font-size:21px;font-weight:600;margin:0 0 5px;
+  letter-spacing:-.01em;line-height:1.25}
+.repro-info p{margin:0;font-size:14px;color:var(--oro)}
+.repro-info small{display:block;margin-top:9px;font-size:12.5px;color:var(--texto-3)}
+
+.barra-audio{margin-bottom:6px;flex:none}
+.riel{height:4px;background:var(--superficie-alta);border-radius:99px;position:relative;cursor:pointer}
+.riel i{display:block;height:100%;background:var(--oro);border-radius:99px;width:0}
+.riel::after{content:'';position:absolute;inset:-11px 0;}
+.tiempos{display:flex;justify-content:space-between;font-size:11.5px;color:var(--texto-3);
+  margin-top:7px;font-variant-numeric:tabular-nums;letter-spacing:.03em}
+
+.mandos{display:flex;align-items:center;justify-content:center;gap:22px;margin:14px 0 18px;flex:none}
+.mando{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:var(--texto-2)}
+.mando:disabled{opacity:.3}
+.mando-grande{width:66px;height:66px;background:var(--oro);color:#1A1408}
+.velocidad{
+  display:block;margin:0 auto 16px;padding:7px 16px;border-radius:99px;flex:none;
+  border:1px solid var(--linea-suave);font-size:12.5px;font-weight:700;color:var(--texto-2);
+  font-variant-numeric:tabular-nums;
+}
+.pistas{border-top:1px solid var(--linea-suave);padding-top:8px}
+.pista{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  padding:12px 6px;border-radius:9px;border-bottom:1px solid var(--linea-suave);
+}
+.pista:last-child{border-bottom:0}
+.pista-n{width:26px;flex:none;font-size:12px;color:var(--texto-3);font-variant-numeric:tabular-nums;text-align:center}
+.pista-t{flex:1;min-width:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pista-d{flex:none;font-size:12px;color:var(--texto-3);font-variant-numeric:tabular-nums}
+.pista.sonando{background:var(--oro-suave)}
+.pista.sonando .pista-t{color:var(--oro);font-weight:600}
+.pista.sonando .pista-n{color:var(--oro)}
+
 .brindis{
   position:fixed;left:50%;bottom:calc(28px + var(--safe-b));transform:translate(-50%,20px);
   z-index:120;background:var(--superficie-alta);color:var(--texto);
@@ -399,6 +478,15 @@ input{font-family:inherit;font-size:16px}
     </button>
   </div>
 </header>
+
+<div class="modos" id="modos">
+  <button class="modo on" data-m="texto">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h7v15H4zM13 5h7v15h-7z"/></svg>Leer
+  </button>
+  <button class="modo" data-m="audio">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2.5" y="13.5" width="4.5" height="7" rx="2"/><rect x="17" y="13.5" width="4.5" height="7" rx="2"/></svg>Escuchar
+  </button>
+</div>
 
 <div class="chips" id="chips"></div>
 
@@ -487,6 +575,52 @@ input{font-family:inherit;font-size:16px}
     </div>
   </div>
 </div>
+
+<!-- Mini reproductor -->
+<div class="mini" id="mini">
+  <div class="mini-tapa" id="miniTapa">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2.5" y="13.5" width="4.5" height="7" rx="2"/><rect x="17" y="13.5" width="4.5" height="7" rx="2"/></svg>
+  </div>
+  <div class="mini-txt" id="miniTxt"></div>
+  <button class="mini-btn" id="miniPlay" aria-label="Reproducir o pausar"></button>
+  <div class="mini-linea"><i id="miniLinea"></i></div>
+</div>
+
+<!-- Reproductor completo -->
+<div class="repro" id="repro">
+  <div class="repro-tope">
+    <button class="l-btn" id="cerrarRepro" aria-label="Minimizar" style="background:var(--superficie)">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <b>Audiolibro</b>
+    <div style="width:38px"></div>
+  </div>
+
+  <div class="repro-cuerpo">
+    <div class="repro-arte" id="reproArte"></div>
+    <div class="repro-info" id="reproInfo"></div>
+
+    <div class="barra-audio">
+      <div class="riel" id="riel"><i id="rielLleno"></i></div>
+      <div class="tiempos"><span id="tActual">0:00</span><span id="tTotal">0:00</span></div>
+    </div>
+
+    <div class="mandos">
+      <button class="mando" id="atras30" aria-label="Retroceder 30 segundos">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4L6 8l5 4"/><path d="M6 8h6a7 7 0 11-7 7"/><text x="12" y="17.5" font-size="7" fill="currentColor" stroke="none" text-anchor="middle" font-family="sans-serif" font-weight="700">30</text></svg>
+      </button>
+      <button class="mando mando-grande" id="tocar" aria-label="Reproducir o pausar"></button>
+      <button class="mando" id="frente30" aria-label="Avanzar 30 segundos">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4l5 4-5 4"/><path d="M18 8h-6a7 7 0 107 7"/><text x="12" y="17.5" font-size="7" fill="currentColor" stroke="none" text-anchor="middle" font-family="sans-serif" font-weight="700">30</text></svg>
+      </button>
+    </div>
+
+    <button class="velocidad" id="velocidad">1×</button>
+    <div class="pistas" id="pistas"></div>
+  </div>
+</div>
+
+<audio id="sonido" preload="metadata"></audio>
 
 <div class="brindis" id="brindis"></div>
 
@@ -588,6 +722,8 @@ const estado = {
   progreso: Guardado.leer('anaquel:progreso', {}),       // id -> {pct, y, visto}
   ajustes: Guardado.leer('anaquel:ajustes', {tam:18, alto:1.75, fuente:'serif', tema:'papel'}),
   marcas: Guardado.leer('anaquel:marcas', {}),          // id -> [{pct, texto, t}]
+  audios: Guardado.leer('anaquel:audios', {}),          // id -> {pista, seg, titulo, autor}
+  modo: 'texto',                                        // 'texto' | 'audio'
   actual: null,
   indice: [],
   pestaña: 'indice'
@@ -676,7 +812,8 @@ function rutasJSON(url){
   ];
 }
 
-async function traerJSON(url){
+async function traerJSON(url, valida){
+  const ok = valida || (d => d && Array.isArray(d.results));
   let ultimo = null;
   for(const r of rutasJSON(url)){
     try{
@@ -686,7 +823,7 @@ async function traerJSON(url){
       clearTimeout(reloj);
       if(!resp.ok){ ultimo = 'http ' + resp.status; continue; }
       const d = JSON.parse(await resp.text());
-      if(d && Array.isArray(d.results)) return d;
+      if(ok(d)) return d;
       ultimo = 'formato inesperado';
     }catch(e){ ultimo = e.name || 'error'; }
   }
@@ -772,13 +909,16 @@ function tarjeta(libro, opciones = {}){
   const enBiblioteca = !!estado.biblioteca[libro.id];
 
   let insignia = '';
-  if(opciones.mostrarProgreso && pct > 0) insignia = `<span class="insignia">${pct} %</span>`;
+  if(libro.audio && libro.runtime) insignia = `<span class="insignia">${esc(libro.runtime)}</span>`;
+  else if(opciones.mostrarProgreso && pct > 0) insignia = `<span class="insignia">${pct} %</span>`;
   else if(!opciones.mostrarProgreso && enBiblioteca) insignia = `<span class="insignia">Guardado</span>`;
+
+  const auricular = libro.audio ? `<span class="auricular"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2.5" y="13.5" width="4.5" height="7" rx="2"/><rect x="17" y="13.5" width="4.5" height="7" rx="2"/></svg></span>` : '';
 
   return `
   <button class="libro" data-id="${libro.id}">
     <div class="tapa" style="background:linear-gradient(140deg,${c1},${c2})">
-      ${insignia}
+      ${insignia}${auricular}
       <div class="marco">
         <div class="tapa-titulo">${esc(titulo)}</div>
         <div class="tapa-regla"></div>
@@ -799,26 +939,30 @@ function pintarCatalogo(total){
     r.innerHTML = '';
     $('#subSeccion').textContent = '';
     avisar('Sin resultados',
-      'No encontramos libros con esa búsqueda. Prueba con otro título, autor o categoría.',
-      'Ver los más leídos', () => { $('#buscar').value=''; estado.busqueda=''; estado.tema=''; pintarChips(); traerCatalogo(true); });
+      'No encontramos nada con esa búsqueda. Prueba con otro título, autor o categoría.',
+      'Ver lo más popular', () => { $('#buscar').value=''; estado.busqueda=''; estado.tema=''; pintarChips(); traer(true); });
     return;
   }
 
   pintarRetomar();
   r.innerHTML = estado.libros.map(l => tarjeta(l)).join('');
-  r.querySelectorAll('.libro').forEach(b => b.onclick = () => abrirFicha(+b.dataset.id));
+  r.querySelectorAll('.libro').forEach(b => b.onclick = () => abrirItem(b.dataset.id));
 
+  const esAudio = estado.modo === 'audio';
   $('#tituloSeccion').textContent = estado.busqueda
     ? `Resultados para “${estado.busqueda}”`
-    : (estado.tema ? TEMAS.find(t => t.id === estado.tema).eti : 'Los más leídos');
-  $('#subSeccion').textContent = `${total.toLocaleString('es-DO')} libros completos · gratis y legales`;
+    : (estado.tema ? TEMAS.find(t => t.id === estado.tema).eti
+                   : (esAudio ? 'Los más escuchados' : 'Los más leídos'));
+  $('#subSeccion').textContent = esAudio
+    ? `${total.toLocaleString('es-DO')} audiolibros narrados · LibriVox`
+    : `${total.toLocaleString('es-DO')} libros completos · gratis y legales`;
 
   if(estado.siguiente){
     $('#zonaAviso').innerHTML = '<button class="mas" id="btnMas">Cargar más libros</button>';
     $('#btnMas').onclick = () => {
       $('#btnMas').textContent = 'Cargando…';
       estado.pagina++;
-      traerCatalogo(false);
+      traer(false);
     };
   }
 }
@@ -826,7 +970,7 @@ function pintarCatalogo(total){
 function pintarRetomar(){
   const viejo = document.getElementById('retomar');
   if(viejo) viejo.remove();
-  if(estado.busqueda || estado.tema) return;
+  if(estado.busqueda || estado.tema || estado.modo === 'audio') return;
 
   const cands = Object.values(estado.biblioteca)
     .map(i => ({...i, pr: estado.progreso[i.id]}))
@@ -857,7 +1001,10 @@ function pintarRetomar(){
 }
 
 function pintarBiblioteca(){
-  const items = Object.values(estado.biblioteca).sort((a,b) => {
+  const sonoros = Object.entries(estado.audios).map(([id,a]) => ({
+    id, titulo:a.titulo, autor:a.autor, audio:true, añadido:a.t
+  }));
+  const items = Object.values(estado.biblioteca).concat(sonoros).sort((a,b) => {
     const pa = estado.progreso[a.id]?.visto || a.añadido || 0;
     const pb = estado.progreso[b.id]?.visto || b.añadido || 0;
     return pb - pa;
@@ -875,14 +1022,16 @@ function pintarBiblioteca(){
     return;
   }
 
-  const leyendo = items.filter(i => (estado.progreso[i.id]?.pct || 0) > 1).length;
-  $('#subSeccion').textContent = leyendo
-    ? `${items.length} guardados · ${leyendo} en curso`
+  const enCurso = items.filter(i => i.audio || (estado.progreso[i.id]?.pct || 0) > 1).length;
+  $('#subSeccion').textContent = enCurso
+    ? `${items.length} guardados · ${enCurso} en curso`
     : `${items.length} ${items.length === 1 ? 'libro guardado' : 'libros guardados'}`;
 
   const r = $('#rejilla');
-  r.innerHTML = items.map(i => tarjeta({id:i.id, title:i.titulo, authors:[{name:i.autor}]}, {mostrarProgreso:true})).join('');
-  r.querySelectorAll('.libro').forEach(b => b.onclick = () => abrirFicha(+b.dataset.id));
+  r.innerHTML = items.map(i => tarjeta(
+    {id:i.id, title:i.titulo, authors:[{name:i.autor}], audio:i.audio}, {mostrarProgreso:true}
+  )).join('');
+  r.querySelectorAll('.libro').forEach(b => b.onclick = () => abrirItem(b.dataset.id));
 }
 
 function pintarChips(){
@@ -893,7 +1042,7 @@ function pintarChips(){
     estado.tema = c.dataset.t;
     pintarChips();
     if(estado.vista !== 'explorar') cambiarVista('explorar', true);
-    else traerCatalogo(true);
+    else traer(true);
     window.scrollTo({top:0, behavior:'smooth'});
   });
 }
@@ -903,11 +1052,12 @@ function cambiarVista(v, saltarTraer){
   $('#navExplorar').classList.toggle('on', v === 'explorar');
   $('#navBiblioteca').classList.toggle('on', v === 'biblioteca');
   $('#chips').style.display = v === 'explorar' ? 'flex' : 'none';
+  $('#modos').style.display = v === 'explorar' ? 'flex' : 'none';
   $('#cajaBuscar').style.display = v === 'explorar' ? 'block' : 'none';
   window.scrollTo({top:0});
   if(v === 'biblioteca') pintarBiblioteca();
   else if(!saltarTraer) pintarCatalogo(estado.libros.length);
-  else traerCatalogo(true);
+  else traer(true);
 }
 
 /* ============================================================
@@ -1372,7 +1522,7 @@ $('#buscar').oninput = e => {
   relojBuscar = setTimeout(() => {
     if(v === estado.busqueda) return;
     estado.busqueda = v;
-    traerCatalogo(true);
+    traer(true);
   }, 420);
 };
 $('#buscar').onkeydown = e => { if(e.key === 'Enter') e.target.blur(); };
@@ -1380,7 +1530,7 @@ $('#limpiar').onclick = () => {
   $('#buscar').value = '';
   $('#limpiar').classList.remove('ver');
   estado.busqueda = '';
-  traerCatalogo(true);
+  traer(true);
 };
 
 $('#telon').onclick = e => { if(e.target === $('#telon')) cerrarFicha(); };
@@ -1464,11 +1614,300 @@ window.addEventListener('beforeunload', () => { if(estado.actual) guardarProgres
 document.addEventListener('visibilitychange', () => { if(document.hidden) guardarProgreso(); });
 
 /* ============================================================
-   10. ARRANQUE
+   11. AUDIOLIBROS — LibriVox vía Internet Archive
    ============================================================ */
+const audio = {
+  el: $('#sonido'),
+  obra: null,      // {id, titulo, autor}
+  pistas: [],      // [{titulo, url, seg}]
+  pista: 0,
+  vel: 1,
+  velocidades: [1, 1.25, 1.5, 1.75, 0.85]
+};
+
+const ISO = {es:'spa', en:'eng', fr:'fre', pt:'por', it:'ita', de:'ger'};
+
+function urlAudios(){
+  const partes = ['collection:(librivoxaudio)'];
+  if(estado.idioma && ISO[estado.idioma]) partes.push(`language:(${ISO[estado.idioma]})`);
+  if(estado.busqueda) partes.push(`(title:(${estado.busqueda}) OR creator:(${estado.busqueda}))`);
+  if(estado.tema) partes.push(`subject:(${estado.tema})`);
+
+  const p = new URLSearchParams();
+  p.set('q', partes.join(' AND '));
+  ['identifier','title','creator','downloads','runtime'].forEach(f => p.append('fl[]', f));
+  p.append('sort[]', 'downloads desc');
+  p.set('rows', 24);
+  p.set('page', estado.pagina);
+  p.set('output', 'json');
+  return 'https://archive.org/advancedsearch.php?' + p.toString();
+}
+
+function normalizarAudio(d){
+  return (d.response?.docs || []).map(x => ({
+    id: x.identifier,
+    audio: true,
+    title: x.title || x.identifier,
+    authors: [{name: Array.isArray(x.creator) ? x.creator[0] : (x.creator || 'Anónimo')}],
+    languages: [estado.idioma],
+    download_count: x.downloads,
+    runtime: x.runtime,
+    formats: {}
+  }));
+}
+
+async function traerAudios(reiniciar){
+  if(estado.cargando) return;
+  estado.cargando = true;
+  if(reiniciar){ estado.pagina = 1; estado.libros = []; pintarEsqueletos(); }
+  $('#zonaAviso').innerHTML = '';
+  const url = urlAudios();
+
+  try{
+    const d = await traerJSON(url, x => x && x.response && Array.isArray(x.response.docs));
+    guardarEnCache(url, d);
+    const nuevos = normalizarAudio(d);
+    estado.libros = estado.libros.concat(nuevos);
+    estado.siguiente = nuevos.length === 24 ? true : null;
+    pintarCatalogo(d.response.numFound || estado.libros.length);
+  }catch(e){
+    const g = leerDeCache(url);
+    if(g){
+      estado.libros = estado.libros.concat(normalizarAudio(g));
+      estado.siguiente = null;
+      pintarCatalogo(g.response?.numFound || estado.libros.length);
+      brindis('Mostrando la última versión guardada');
+    }else if(!estado.libros.length){
+      $('#rejilla').innerHTML = '';
+      $('#subSeccion').textContent = '';
+      avisar('Los audiolibros no responden',
+        'Internet Archive no está disponible ahora mismo. Suele volver en unos minutos.',
+        'Reintentar', () => traerAudios(true));
+    }
+  }finally{ estado.cargando = false; }
+}
+
+function traer(reiniciar){
+  return estado.modo === 'audio' ? traerAudios(reiniciar) : traerCatalogo(reiniciar);
+}
+
+/* ---------- Abrir un audiolibro ---------- */
+async function abrirAudio(obra){
+  const guardado = estado.audios[obra.id];
+  $('#repro').classList.add('ver');
+  document.body.classList.add('bloqueado');
+  $('#pistas').innerHTML = `<div class="panel-vacio" style="color:var(--texto-3)">Cargando los capítulos…</div>`;
+  $('#reproInfo').innerHTML = `<h3>${esc(obra.title)}</h3><p>${esc(autorDe(obra))}</p>`;
+
+  const [c1, c2] = tela(obra.title + autorDe(obra));
+  $('#reproArte').innerHTML = `
+    <div class="tapa" style="background:linear-gradient(140deg,${c1},${c2})">
+      <div class="marco">
+        <div class="tapa-titulo" style="font-size:17px">${esc(obra.title)}</div>
+        <div class="tapa-regla"></div>
+        <div class="tapa-autor" style="font-size:11px">${esc(autorDe(obra))}</div>
+      </div>
+    </div>`;
+
+  try{
+    const d = await traerJSON('https://archive.org/metadata/' + encodeURIComponent(obra.id),
+                              x => x && Array.isArray(x.files));
+
+    // Un solo formato para no duplicar capítulos
+    const mp3 = d.files.filter(f => /\.mp3$/i.test(f.name || ''));
+    let sel = mp3.filter(f => f.format === 'VBR MP3');
+    if(!sel.length) sel = mp3.filter(f => /128Kbps MP3/i.test(f.format || ''));
+    if(!sel.length) sel = mp3;
+
+    audio.pistas = sel
+      .map(f => ({
+        titulo: (f.title || f.name.replace(/\.mp3$/i,'').replace(/[_-]/g,' ')).trim(),
+        url: 'https://archive.org/download/' + encodeURIComponent(obra.id) + '/' + encodeURIComponent(f.name),
+        seg: parseFloat(f.length) || 0,
+        orden: parseInt(f.track, 10) || 0,
+        nombre: f.name
+      }))
+      .sort((a,b) => (a.orden - b.orden) || a.nombre.localeCompare(b.nombre, 'es', {numeric:true}));
+
+    if(!audio.pistas.length) throw new Error('sin pistas');
+
+    audio.obra = {id: obra.id, titulo: obra.title, autor: autorDe(obra)};
+    const total = audio.pistas.reduce((s,p) => s + p.seg, 0);
+    $('#reproInfo').innerHTML = `<h3>${esc(obra.title)}</h3><p>${esc(autorDe(obra))}</p>
+      <small>${audio.pistas.length} capítulos${total ? ' · ' + duracion(total) : ''} · LibriVox</small>`;
+
+    pintarPistas();
+    cargarPista(guardado?.pista ?? 0, guardado?.seg ?? 0, false);
+    if(guardado?.seg > 5) brindis(`Retomamos en el capítulo ${(guardado.pista ?? 0) + 1}`);
+  }catch(e){
+    $('#pistas').innerHTML = `<div class="panel-vacio" style="color:var(--texto-3)">
+      No se pudieron cargar los capítulos.<br><br>Internet Archive no respondió.</div>`;
+  }
+}
+
+function duracion(s){
+  s = Math.max(0, Math.round(s || 0));
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), g = s%60;
+  return h ? `${h}:${String(m).padStart(2,'0')}:${String(g).padStart(2,'0')}`
+           : `${m}:${String(g).padStart(2,'0')}`;
+}
+
+function pintarPistas(){
+  $('#pistas').innerHTML = audio.pistas.map((p, i) => `
+    <button class="pista ${i === audio.pista ? 'sonando' : ''}" data-p="${i}">
+      <span class="pista-n">${i+1}</span>
+      <span class="pista-t">${esc(p.titulo)}</span>
+      <span class="pista-d">${p.seg ? duracion(p.seg) : ''}</span>
+    </button>`).join('');
+  $('#pistas').querySelectorAll('[data-p]').forEach(b =>
+    b.onclick = () => cargarPista(+b.dataset.p, 0, true));
+}
+
+function cargarPista(i, desde, tocarYa){
+  if(i < 0 || i >= audio.pistas.length) return;
+  audio.pista = i;
+  audio.el.src = audio.pistas[i].url;
+  audio.el.playbackRate = audio.vel;
+  if(desde) audio.el.currentTime = desde;
+  pintarPistas();
+  refrescarMini();
+  if(tocarYa) audio.el.play().catch(() => brindis('No se pudo reproducir'));
+  guardarAudio();
+}
+
+function iconoTocar(sonando){
+  return sonando
+    ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="5" width="4" height="14" rx="1.2"/><rect x="13.5" y="5" width="4" height="14" rx="1.2"/></svg>'
+    : '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 001.5.87l11-6.5a1 1 0 000-1.74l-11-6.5A1 1 0 008 5.5z"/></svg>';
+}
+
+function refrescarMini(){
+  const hay = !!audio.obra;
+  const visible = hay && !$('#repro').classList.contains('ver');
+  $('#mini').classList.toggle('ver', visible);
+  document.querySelector('.envoltura').style.paddingBottom =
+    visible ? 'calc(122px + var(--safe-b))' : '';
+  if(!hay) return;
+  const son = !audio.el.paused;
+  $('#miniTxt').innerHTML = `<b>${esc(audio.obra.titulo)}</b><span>Capítulo ${audio.pista+1} · ${esc(audio.obra.autor)}</span>`;
+  $('#miniPlay').innerHTML = iconoTocar(son);
+  $('#tocar').innerHTML = iconoTocar(son);
+  const [c1] = tela(audio.obra.titulo + audio.obra.autor);
+  $('#miniTapa').style.background = c1;
+}
+
+function guardarAudio(){
+  if(!audio.obra) return;
+  estado.audios[audio.obra.id] = {
+    pista: audio.pista,
+    seg: audio.el.currentTime || 0,
+    titulo: audio.obra.titulo,
+    autor: audio.obra.autor,
+    t: Date.now()
+  };
+  Guardado.escribir('anaquel:audios', estado.audios);
+}
+
+/* ---------- Eventos del reproductor ---------- */
+/* Decide si abrir la ficha de un libro o el reproductor de un audiolibro */
+function abrirItem(id){
+  const it = estado.libros.find(l => String(l.id) === String(id));
+  if(it && it.audio) return abrirAudio(it);
+  const g = estado.audios[id];
+  if(g && !it) return abrirAudio({id, title:g.titulo, authors:[{name:g.autor}], audio:true});
+  return abrirFicha(+id);
+}
+
+document.querySelectorAll('.modo').forEach(b => b.onclick = () => {
+  if(estado.modo === b.dataset.m) return;
+  estado.modo = b.dataset.m;
+  document.querySelectorAll('.modo').forEach(o => o.classList.toggle('on', o === b));
+  $('#buscar').placeholder = estado.modo === 'audio'
+    ? 'Busca un audiolibro por título o autor'
+    : 'Busca por título o autor';
+  window.scrollTo({top:0});
+  traer(true);
+});
+
+function alternarSonido(){
+  if(!audio.obra) return;
+  if(audio.el.paused) audio.el.play().catch(() => brindis('No se pudo reproducir'));
+  else audio.el.pause();
+}
+
+$('#tocar').onclick = alternarSonido;
+$('#miniPlay').onclick = e => { e.stopPropagation(); alternarSonido(); };
+$('#mini').onclick = () => {
+  $('#repro').classList.add('ver');
+  document.body.classList.add('bloqueado');
+  refrescarMini();
+};
+$('#cerrarRepro').onclick = () => {
+  $('#repro').classList.remove('ver');
+  document.body.classList.remove('bloqueado');
+  refrescarMini();
+};
+$('#atras30').onclick = () => { audio.el.currentTime = Math.max(0, audio.el.currentTime - 30); };
+$('#frente30').onclick = () => { audio.el.currentTime = Math.min(audio.el.duration || 1e9, audio.el.currentTime + 30); };
+
+$('#velocidad').onclick = () => {
+  const i = (audio.velocidades.indexOf(audio.vel) + 1) % audio.velocidades.length;
+  audio.vel = audio.velocidades[i];
+  audio.el.playbackRate = audio.vel;
+  $('#velocidad').textContent = audio.vel + '×';
+  Guardado.escribir('anaquel:velocidad', audio.vel);
+};
+
+$('#riel').onclick = e => {
+  const d = audio.el.duration;
+  if(!d) return;
+  const r = $('#riel').getBoundingClientRect();
+  audio.el.currentTime = Math.min(d, Math.max(0, ((e.clientX - r.left) / r.width) * d));
+};
+
+audio.el.addEventListener('timeupdate', () => {
+  const d = audio.el.duration || 0;
+  const pct = d ? (audio.el.currentTime / d) * 100 : 0;
+  $('#rielLleno').style.width = pct + '%';
+  $('#miniLinea').style.width = pct + '%';
+  $('#tActual').textContent = duracion(audio.el.currentTime);
+  $('#tTotal').textContent = d ? duracion(d) : '0:00';
+});
+audio.el.addEventListener('play', refrescarMini);
+audio.el.addEventListener('pause', () => { refrescarMini(); guardarAudio(); });
+audio.el.addEventListener('ended', () => {
+  if(audio.pista + 1 < audio.pistas.length) cargarPista(audio.pista + 1, 0, true);
+  else brindis('Audiolibro terminado');
+});
+audio.el.addEventListener('error', () => {
+  if(audio.obra) brindis('Ese capítulo no se pudo cargar');
+});
+setInterval(() => { if(audio.obra && !audio.el.paused) guardarAudio(); }, 5000);
+
+/* Controles de la pantalla de bloqueo y los AirPods */
+if('mediaSession' in navigator){
+  navigator.mediaSession.setActionHandler('play', () => audio.el.play());
+  navigator.mediaSession.setActionHandler('pause', () => audio.el.pause());
+  navigator.mediaSession.setActionHandler('previoustrack', () => cargarPista(audio.pista - 1, 0, true));
+  navigator.mediaSession.setActionHandler('nexttrack', () => cargarPista(audio.pista + 1, 0, true));
+  audio.el.addEventListener('loadedmetadata', () => {
+    if(!audio.obra) return;
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: audio.pistas[audio.pista]?.titulo || '',
+      artist: audio.obra.autor,
+      album: audio.obra.titulo
+    });
+  });
+}
+
+/* ============================================================
+   12. ARRANQUE
+   ============================================================ */
+audio.vel = Guardado.leer('anaquel:velocidad', 1);
+$('#velocidad').textContent = audio.vel + '×';
 aplicarAjustes();
 pintarChips();
-traerCatalogo(true);
+traer(true);
 </script>
 </body>
 </html>
