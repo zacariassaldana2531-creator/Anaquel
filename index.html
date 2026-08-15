@@ -1089,7 +1089,7 @@ function esCapitulo(p){
 /* ============================================================
    8. LECTOR
    ============================================================ */
-let guardarProgresoDiferido, ocultarControles, controlesVisibles = true;
+let guardarProgresoDiferido, controlesVisibles = true;
 
 function aplicarAjustes(){
   const a = estado.ajustes;
@@ -1223,7 +1223,6 @@ function abrirPanel(){
   pintarPanel();
   $('#panel').classList.add('ver');
   $('#panelFondo').classList.add('ver');
-  clearTimeout(ocultarControles);
 }
 function cerrarPanel(){
   $('#panel').classList.remove('ver');
@@ -1349,13 +1348,14 @@ function mostrarControles(){
   controlesVisibles = true;
   $('#lTope').classList.remove('oculto');
   $('#lPie').classList.remove('oculto');
-  clearTimeout(ocultarControles);
-  ocultarControles = setTimeout(() => {
-    if($('#ajustes').classList.contains('ver')) return;
-    controlesVisibles = false;
-    $('#lTope').classList.add('oculto');
-    $('#lPie').classList.add('oculto');
-  }, 3200);
+}
+
+function ocultarBarras(){
+  if($('#ajustes').classList.contains('ver')) return;
+  if($('#panel').classList.contains('ver')) return;
+  controlesVisibles = false;
+  $('#lTope').classList.add('oculto');
+  $('#lPie').classList.add('oculto');
 }
 
 /* ============================================================
@@ -1399,8 +1399,7 @@ document.querySelectorAll('.panel-tab').forEach(t => t.onclick = () => {
 $('#abrirAjustes').onclick = () => {
   const a = $('#ajustes');
   a.classList.toggle('ver');
-  if(a.classList.contains('ver')){ clearTimeout(ocultarControles); }
-  else mostrarControles();
+  if(!a.classList.contains('ver')) mostrarControles();
 };
 
 document.querySelectorAll('.aj-ops').forEach(g => {
@@ -1413,10 +1412,17 @@ document.querySelectorAll('.aj-ops').forEach(g => {
   });
 });
 
-let relojMarca;
+let relojMarca, ultimoScroll = 0;
 $('#lCuerpo').addEventListener('scroll', () => {
   actualizarProgreso();
-  if(controlesVisibles) mostrarControles();
+
+  // La barra se aparta cuando bajas leyendo y vuelve cuando subes.
+  const y = $('#lCuerpo').scrollTop;
+  const dif = y - ultimoScroll;
+  if(dif > 26 && y > 140){ ocultarBarras(); ultimoScroll = y; }
+  else if(dif < -26){ mostrarControles(); ultimoScroll = y; }
+  else if(Math.abs(dif) > 26) ultimoScroll = y;
+
   clearTimeout(relojMarca);
   relojMarca = setTimeout(refrescarIconoMarca, 200);
 }, {passive:true});
@@ -1427,12 +1433,8 @@ $('#lCuerpo').addEventListener('click', e => {
     mostrarControles();
     return;
   }
-  if(controlesVisibles){
-    controlesVisibles = false;
-    clearTimeout(ocultarControles);
-    $('#lTope').classList.add('oculto');
-    $('#lPie').classList.add('oculto');
-  }else mostrarControles();
+  if(controlesVisibles) ocultarBarras();
+  else { mostrarControles(); ultimoScroll = $('#lCuerpo').scrollTop; }
 });
 
 document.addEventListener('keydown', e => {
